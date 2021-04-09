@@ -32,48 +32,44 @@ class Input extends React.Component {
         this.handleLoad();
     }
 
-    handleLoad() {
-        loadLists().then((names) => {
-            names = names.substring(2, names.length - 2).replaceAll("'", "");
-            names = names.replace("[", "");
-            names = names.split(",");
-            console.log(names);
-            this.setState({
-                posList: ["-"].concat(names.slice(48)),
-                attrList: ["-"].concat(names.slice(0, 47)),
-            });
+    async handleLoad() {
+        let names = await loadLists();
+        names = await loadLists();
+        names = names.substring(2, names.length - 2).replaceAll("'", "");
+        names = names.replace("[", "");
+        names = names.split(",");
+
+        this.setState({
+            posList: ["-"].concat(names.slice(48)),
+            attrList: ["-"].concat(names.slice(0, 47)),
         });
-        // console.log(this.state.posList);
     }
 
-    handleChange(event) {
+    async handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
         if (this.state.name.length >= 4) {
-            loadSuggest(this.state.name).then((suggest) => {
-                // convert this res in python to json
-                suggest = suggest
-                    .substring(1, suggest.length - 1)
-                    .replaceAll("'", "");
-                suggest = suggest.split(",");
-                this.setState({ suggestion: suggest });
-            });
-            // console.log(this.state.suggestion)
+            let suggest = await loadSuggest(this.state.name);
+            // convert this res in python to json
+            suggest = suggest
+                .substring(1, suggest.length - 1)
+                .replaceAll("'", "");
+            suggest = suggest.split(",");
+            this.setState({ suggestion: suggest });
         }
     }
 
-    handleClick() {
+    async handleClick() {
         let reqJSON = Object.assign({}, this.state);
-        delete reqJSON.suggestion;
-        delete reqJSON.attrList;
-        delete reqJSON.posList;
+
         reqJSON.position = reqJSON.position.trim();
         reqJSON.ability1Name = reqJSON.ability1Name.trim();
         reqJSON.ability2Name = reqJSON.ability2Name.trim();
-        loadPlayer(reqJSON).then((players) => {
-            console.log("__________________________");
-            this.setState({ players: players });
-            // console.log(this.state.players)
-        });
+
+        console.log("Klick!");
+
+        const players = await loadPlayer(reqJSON);
+        this.setState({ players: players });
+
         this.setState({
             name: "",
             position: "-",
@@ -165,11 +161,9 @@ class Input extends React.Component {
                 </div>
                 <div>
                     {typeof this.state.players[0] === "object" &&
-                    this.state.players[0].data !== undefined ? (
-                        <Players values={this.state.players} />
-                    ) : (
-                        console.log("displayResult")
-                    )}
+                        this.state.players[0].data !== undefined && (
+                            <Players values={this.state.players} />
+                        )}
                 </div>
             </div>
         );

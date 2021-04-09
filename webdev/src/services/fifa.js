@@ -1,30 +1,32 @@
-export async function loadPlayer(req_data) {
-    console.log("req_data");
-    console.log(req_data);
+import { submitGetRequest, submitPostRequest } from "../network";
 
-    const response = await fetch(`http://localhost:9000/fifa`, {
+export const loadPlayer = (req_data) => {
+    const header = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(req_data),
-    });
-    return await response.json();
-}
+    };
+
+    return submitPostRequest(`http://localhost:9000/fifa`, header);
+};
 
 export async function loadSuggest(namePart) {
-    const response = await fetch(
-        `http://localhost:9000/fifa?part=${encodeURIComponent(namePart)}`,
-        {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        }
-    );
-    return await response.text();
+    const header = {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+    };
+    const url = `http://localhost:9000/fifa?part=${encodeURIComponent(
+        namePart
+    )}`;
+
+    return submitGetRequest(url, header);
 }
 
 export async function loadLists() {
-    const response = await fetch(`http://localhost:9000/fifa`, {
+    const header = {
         method: "GET",
         headers: { "Content-Type": "application/json" },
-    });
-    return await response.text();
+    };
+
+    return submitGetRequest(`http://localhost:9000/fifa`, header);
 }

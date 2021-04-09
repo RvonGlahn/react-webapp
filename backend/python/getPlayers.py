@@ -7,6 +7,7 @@ import os
 
 player_csv = r'C:\Users\rasmu\WebstormProjects\backend\python\players_21.csv'
 
+
 def load_attributes():
     """
     :return:
@@ -46,7 +47,11 @@ def search_player(name="", position="-", age=99, attribute1="-", value1=99, attr
         df = df[df[attribute1] >= int(value1)]
     if attribute2 != "-":
         df = df[df[attribute2] >= int(value2)]
-    return df
+
+    if df.empty:
+        return {}
+    else:
+        return df
 
 
 def handle_request(json_data):
@@ -64,8 +69,10 @@ def handle_request(json_data):
 
 def get_suggestion(subname):
     series = load_data(False)
-    name_suggest = [name for name in series['Name'].to_list() if subname in name]
+    name_suggest = [name for name in series['Name'].to_list()
+                    if subname in name]
     return name_suggest
+
 
 '''
 if __name__ == "__main__":
@@ -76,22 +83,20 @@ if __name__ == "__main__":
     (attributes, positions) = load_attributes()
     json = handle_request(req_json)
     print(json)
-'''    
-   
-data = None;
+'''
+
+data = None
 
 if sys.argv[1] == "attributes":
     data = load_attributes()
-    
+
 
 if sys.argv[1] == "getPlayers":
     data = handle_request(sys.argv[2])
-    
-    
-if  sys.argv[1] == "suggest":
+
+
+if sys.argv[1] == "suggest":
     data = get_suggestion(sys.argv[2])
     # data= data.encode('utf-8')
-    
+
 print(data)
-
-
