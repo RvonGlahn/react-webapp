@@ -1,0 +1,175 @@
+.player{
+    float: left;
+    padding-left: 3rem;
+    text-align: center;
+    width: 15rem;
+}
+
+.container{
+    width:60%;
+    margin:0 auto;
+    text-align:center;
+    padding-left: 100px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+}
+
+.details-wrapper {
+    width: 75vw;
+    margin: 0 auto;
+    background-color: var(--primary-color);
+    box-shadow:0 -1px 1px 5px #BFBFBF;
+}
+details {
+    padding: .5rem;
+    font: 1rem/1.2 sans-serif;
+}
+
+summary {
+    padding: .25rem 1rem;
+    background-color: var(--primary-color);
+    font: bold 1.25rem/2 sans-serif;
+    color:floralwhite;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 -1px 1px 1px var(--primary-color);
+    cursor: pointer;
+    height: 3rem;
+    overflow: hidden;
+    /*list-style: none;*/ /* Triangle not shown */
+}
+/* Triangle not shown - Style for Webkit-Browser */
+/*summary::-webkit-details-marker {
+    display: none;
+}*/
+summary::before {
+    padding-right: .25rem;
+    /*content: '+ ';*/  /* Instead of Triangle closed */
+}
+details[open] summary::before {
+    padding-right: .25rem;
+    /*content: '- ';*/ /* Instead of Triangle open */
+}
+
+/* Styling the summary in case of open 'details' */
+details[open] summary {
+    border-radius: 3px 3px 0 0;
+}
+
+.details-content {
+    height: 13rem;
+    margin: 0;
+    padding: .25rem 1rem;
+    background-color: white;
+    border-radius: 0 0 3px 3px;
+    box-shadow: 0 1px 1px 1px var(--primary-color);
+    color: var(--primary-color);
+    overflow: auto;
+}
+
+.money{
+    float: left;
+    padding-right: 1rem;
+    width: 15rem;
+    text-align: left;
+}
+
+.attribute{
+    float: left;
+    padding-right: 1rem;
+    width: 15rem;
+    text-align: left;
+}
+
+.player{
+    float: left;
+    padding-left: 3rem;
+    text-align: center;
+    width: 15rem;
+}
+
+@media screen and (max-width: 512px){
+    .container{
+        width:60%;
+        margin:0 auto;
+        text-align:center;
+        padding-left: 100px;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    .details-wrapper {
+        width: 75vw;
+        margin: 0 auto;
+        background-color: var(--primary-color);
+        box-shadow:0 -1px 1px 5px #BFBFBF;
+    }
+    details {
+        padding: .5rem;
+        font: 1rem/1.2 sans-serif;
+    }
+
+    summary {
+        padding: .25rem 1rem;
+        background-color: var(--primary-color);
+        font: bold 1.25rem/2 sans-serif;
+        color:floralwhite;
+        border: none;
+        border-radius: 1px;
+        box-shadow: 0 -1px 1px 1px var(--primary-color);
+        cursor: pointer;
+        height: 3rem;
+        /*list-style: none;*/ /* Triangle not shown */
+    }
+
+    summary::before {
+        padding-right: .25rem;
+        /*content: '+ ';*/  /* Instead of Triangle closed */
+    }
+    details[open] summary::before {
+        padding-right: .25rem;
+        /*content: '- ';*/ /* Instead of Triangle open */
+    }
+
+    /* Styling the summary in case of open 'details' */
+    details[open] summary {
+        border-radius: 3px 3px 0 0;
+    }
+
+    .details-content {
+        height: 12rem;
+        margin: 0;
+        padding: .25rem 1rem;
+        background-color: white;
+        border-radius: 0 0 3px 3px;
+        box-shadow: 0 1px 1px 1px var(--primary-color);
+        color: var(--primary-color);
+        overflow: auto;
+    }
+
+    .player{
+        float: left;
+        padding-left: 1rem;
+        text-align: center;
+        width: 7rem;
+    }
+
+    .attribute{
+        float: left;
+        padding-right: 1rem;
+        width: 10rem;
+        text-align: left;
+    }
+}
