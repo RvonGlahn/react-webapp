@@ -1,7 +1,11 @@
 import React from "react";
 import "./Input.css";
+import { useEffect } from "react";
 
 function SelectInput(props) {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <div className="form-inputs">
             <label className="form-label">

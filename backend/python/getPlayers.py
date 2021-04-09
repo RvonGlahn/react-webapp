@@ -51,7 +51,7 @@ def search_player(name="", position="-", age=99, attribute1="-", value1=99, attr
     if df.empty:
         return {}
     else:
-        return df
+        return df.head(20)
 
 
 def handle_request(json_data):
@@ -64,6 +64,7 @@ def handle_request(json_data):
     req = json.loads(json_data)
     players = search_player(req['name'], req['position'], req['age'], req['ability1Name'], req['ability1Value'],
                             req['ability2Name'], req['ability2Value'])
+
     return players.to_json(orient="split")
 
 
@@ -73,17 +74,6 @@ def get_suggestion(subname):
                     if subname in name]
     return name_suggest
 
-
-'''
-if __name__ == "__main__":
-    req_json = '{ "name":"" , "position":"" , "age":30, "attribute1":"POT", "value1":85 ,' \
-               '"attribute2":"OVA", "value2":85}'
-
-    print(get_suggestion("Ronal"))
-    (attributes, positions) = load_attributes()
-    json = handle_request(req_json)
-    print(json)
-'''
 
 data = None
 

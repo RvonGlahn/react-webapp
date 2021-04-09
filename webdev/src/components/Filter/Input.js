@@ -65,7 +65,7 @@ class Input extends React.Component {
         reqJSON.ability1Name = reqJSON.ability1Name.trim();
         reqJSON.ability2Name = reqJSON.ability2Name.trim();
 
-        console.log("Klick!");
+        console.log(reqJSON);
 
         const players = await loadPlayer(reqJSON);
         this.setState({ players: players });
