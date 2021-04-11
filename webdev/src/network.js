@@ -15,11 +15,11 @@ export const submitGetRequest = (url, headers) => {
                         statusText: response.statusText,
                     });
                 } else {
-                    const json = response.text();
-                    if (json.then) {
-                        json.then(resolve).catch(reject);
+                    const text = response.text();
+                    if (text.then) {
+                        text.then(resolve).catch(reject);
                     } else {
-                        return resolve(json);
+                        return resolve(text);
                     }
                 }
             })

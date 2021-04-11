@@ -33,13 +33,11 @@ class Input extends React.Component {
     }
 
     async handleLoad() {
-        console.log("Load Attributes");
         let names = await loadLists();
         names = names.substring(2, names.length - 2).replaceAll("'", "");
         names = names.replace("[", "");
         names = names.split(",");
 
-        console.log(names);
         this.setState({
             posList: ["-"].concat(names.slice(48)),
             attrList: ["-"].concat(names.slice(0, 47)),
@@ -65,8 +63,6 @@ class Input extends React.Component {
         reqJSON.position = reqJSON.position.trim();
         reqJSON.ability1Name = reqJSON.ability1Name.trim();
         reqJSON.ability2Name = reqJSON.ability2Name.trim();
-
-        console.log(reqJSON);
 
         const players = await loadPlayer(reqJSON);
         this.setState({ players: players });
