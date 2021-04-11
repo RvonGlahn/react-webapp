@@ -14,6 +14,7 @@ def load_attributes():
         attribute_list: all attributes for Players to search
         positionen:     all positions of Players
     """
+
     with open(player_csv, newline='', encoding='utf-8') as f:
         reader = csv.reader(f)
         row1 = next(reader)
@@ -49,7 +50,7 @@ def search_player(name="", position="-", age=99, attribute1="-", value1=99, attr
         df = df[df[attribute2] >= int(value2)]
 
     if df.empty:
-        return {}
+        return str({})
     else:
         return df.head(20)
 
@@ -65,7 +66,10 @@ def handle_request(json_data):
     players = search_player(req['name'], req['position'], req['age'], req['ability1Name'], req['ability1Value'],
                             req['ability2Name'], req['ability2Value'])
 
-    return players.to_json(orient="split")
+    if type(players) == str:
+        return players
+    else:
+        return players.to_json(orient="split")
 
 
 def get_suggestion(subname):

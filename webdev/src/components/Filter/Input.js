@@ -33,12 +33,13 @@ class Input extends React.Component {
     }
 
     async handleLoad() {
+        console.log("Load Attributes");
         let names = await loadLists();
-        names = await loadLists();
         names = names.substring(2, names.length - 2).replaceAll("'", "");
         names = names.replace("[", "");
         names = names.split(",");
 
+        console.log(names);
         this.setState({
             posList: ["-"].concat(names.slice(48)),
             attrList: ["-"].concat(names.slice(0, 47)),
