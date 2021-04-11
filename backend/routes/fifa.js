@@ -25,7 +25,7 @@ router.post("/", function (req, res) {
     );
 });
 
-router.get("/*", function (req, res) {
+router.get("/", function (req, res) {
     const PythonShell = require("python-shell");
     console.log("Hallo");
 

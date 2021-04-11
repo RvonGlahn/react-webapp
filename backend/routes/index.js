@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === "production") {
     router.use(express.static(path.join(__dirname, "../../webdev/build")));
 
     // Handle React routing, return all requests to React app
-    router.get("/*", function (req, res) {
+    router.get("/", function (req, res) {
         res.sendFile(path.join(__dirname, "../../webdev/build", "index.html"));
     });
 }
