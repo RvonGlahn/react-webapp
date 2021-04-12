@@ -1,32 +1,32 @@
-import { submitGetRequest, submitPostRequest } from "../network";
+import { submitGetRequest, submitPostRequest } from '../network';
 
 export const loadPlayer = (req_data) => {
     const header = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(req_data),
     };
 
-    return submitPostRequest(`http://localhost:9000/fifa`, header);
+    return submitPostRequest(new URL('fifa21', process.env.REACT_APP_SERVER_URL), header);
+    // return submitPostRequest(`http://localhost:9000/fifa`, header);
 };
 
 export async function loadSuggest(namePart) {
     const header = {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
     };
-    const url = `http://localhost:9000/fifa?part=${encodeURIComponent(
-        namePart
-    )}`;
+    const urlEnd = `fifa21?part=${encodeURIComponent(namePart)}`;
+    const url = new URL(urlEnd, process.env.REACT_APP_SERVER_URL);
 
     return submitGetRequest(url, header);
 }
 
 export async function loadLists() {
     const header = {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
     };
 
-    return submitGetRequest(`http://localhost:9000/fifa`, header);
+    return submitGetRequest(new URL('fifa21', process.env.REACT_APP_SERVER_URL), header);
 }

@@ -34,7 +34,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/", indexRouter);
-app.use("/fifa", fifaRouter);
+app.use("/fifa21", fifaRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

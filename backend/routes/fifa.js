@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const path = require("path");
 
-const scriptFolder = "C:\\Users\\rasmu\\WebstormProjects\\backend\\python";
+const scriptFolder = path.join(__dirname, "..", "python");
 
 router.post("/", function (req, res) {
     const PythonShell = require("python-shell");

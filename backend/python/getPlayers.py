@@ -5,7 +5,7 @@ import sys
 import os
 
 
-player_csv = r'C:\Users\rasmu\WebstormProjects\backend\python\players_21.csv'
+player_csv = os.path.join(os.getcwd(), 'python', 'players_21.csv')
 
 
 def load_attributes():
