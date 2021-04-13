@@ -34,8 +34,7 @@ class Input extends React.Component {
 
     async handleLoad() {
         let names = await loadLists();
-        names = names.substring(2, names.length - 2);
-        names = names.replace(/'/g, '');
+        names = names.substring(2, names.length - 2).replaceAll("'", '');
         names = names.replace('[', '');
         names = names.split(',');
 
@@ -51,8 +50,7 @@ class Input extends React.Component {
         if (this.state.name.length >= 4) {
             let suggest = await loadSuggest(this.state.name);
             // convert this res in python to json
-            suggest = suggest.substring(1, suggest.length - 1);
-            suggest = suggest.replace(/'/g, '');
+            suggest = suggest.substring(1, suggest.length - 1).replaceAll("'", '');
             suggest = suggest.split(',');
             this.setState({ ...this.state, suggestion: suggest });
         }
