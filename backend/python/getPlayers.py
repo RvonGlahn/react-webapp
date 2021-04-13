@@ -4,7 +4,6 @@ import csv
 import sys
 import os
 import numpy as np
-print(pd.__version__)
 
 player_csv = os.path.join(os.getcwd(), 'python', 'players_21.csv')
 
