@@ -33,7 +33,8 @@ public/env.js
 public/__ENV.js
 
 # debug
-logs/
+*.logs
+debug.log*
 npm-debug.log*
 src/npm-debug.log
 yarn-debug.log*
