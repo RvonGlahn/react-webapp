@@ -3,6 +3,7 @@ import json
 import csv
 import sys
 import os
+import numpy as np
 print(pd.__version__)
 
 player_csv = os.path.join(os.getcwd(), 'python', 'players_21.csv')
@@ -74,7 +75,7 @@ def handle_request(json_data):
 
 def get_suggestion(subname):
     series = load_data(False)
-    name_suggest = [name for name in series['Name'].to_list()
+    name_suggest = [name for name in np.array(series['Name'])
                     if subname in name]
     return name_suggest
 
