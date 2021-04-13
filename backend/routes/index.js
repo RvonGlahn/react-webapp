@@ -10,6 +10,15 @@ if (process.env.NODE_ENV === "production") {
     router.get("/", function (req, res) {
         res.sendFile(path.join(__dirname, "../../webdev/build", "index.html"));
     });
+    router.get("/fifa", function (req, res) {
+        res.sendFile(path.join(__dirname, "../../webdev/build", "index.html"));
+    });
+    router.get("/projects", function (req, res) {
+        res.sendFile(path.join(__dirname, "../../webdev/build", "index.html"));
+    });
+    router.get("/login", function (req, res) {
+        res.sendFile(path.join(__dirname, "../../webdev/build", "index.html"));
+    });
 }
 
 module.exports = router;
