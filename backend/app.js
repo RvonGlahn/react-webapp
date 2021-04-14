@@ -4,7 +4,7 @@ const path = require("path");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const compression = require("compression");
-const cors = require("cors");
+// const cors = require("cors");
 const fs = require("fs");
 
 const indexRouter = require("./routes/index");
@@ -20,7 +20,7 @@ app.set("view engine", "jade");
 
 app.use(helmet());
 app.use(compression());
-app.use(cors());
+// app.use(cors());
 
 // create a write stream (in append mode)
 const accessLogStream = fs.createWriteStream(

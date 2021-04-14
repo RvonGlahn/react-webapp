@@ -2,6 +2,7 @@
 
 #### Commands
 
+export NODE_ENV=production
 SET NODE_ENV=production
 node app.js
 npm run build
@@ -15,6 +16,10 @@ apt-get remove ––purge iceweasel
 
 https://linuxize.com/post/how-to-install-node-js-on-raspberry-pi/
 https://dev.to/guimg/how-to-serve-nodejs-applications-with-nginx-on-a-raspberry-jld
+
+https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04
+
+https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04
 
 #### Security
 
