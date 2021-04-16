@@ -12,7 +12,7 @@ const fifaRouter = require("./routes/fifa");
 
 const app = express();
 
-const port = 9000;
+const port = 8080;
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
