@@ -51,6 +51,6 @@ app.use(function (err, req, res, next) {
     res.render("error");
 });
 
-app.listen(port, "192.168.178.20");
+app.listen(port, "localhost");
 
 module.exports = app;
