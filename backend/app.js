@@ -4,7 +4,7 @@ const path = require("path");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const compression = require("compression");
-// const cors = require("cors");
+const cors = require("cors");
 const fs = require("fs");
 
 const indexRouter = require("./routes/index");
@@ -13,6 +13,7 @@ const fifaRouter = require("./routes/fifa");
 const app = express();
 
 const port = 8080;
+const hostname = "localhost";
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -20,7 +21,7 @@ app.set("view engine", "jade");
 
 app.use(helmet());
 app.use(compression());
-// app.use(cors());
+app.use(cors());
 
 // create a write stream (in append mode)
 const accessLogStream = fs.createWriteStream(
@@ -51,6 +52,6 @@ app.use(function (err, req, res, next) {
     res.render("error");
 });
 
-app.listen(port, "localhost");
-
-module.exports = app;
+app.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`);
+});
