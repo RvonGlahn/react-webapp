@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const path = require("path");
+// process.env.NODE_ENV === "production"
 
-if (process.env.NODE_ENV === "production") {
+if (true) {
     // Serve any static files
-    router.use(express.static(path.join(__dirname, "../../webdev/build")));
+    // router.use(express.static(path.join(__dirname, "../../webdev/build")));
 
     // Handle React routing, return all requests to React app
     router.get("/", function (req, res) {

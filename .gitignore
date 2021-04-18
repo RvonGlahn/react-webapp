@@ -18,6 +18,7 @@ node_modules/
 /coverage
 
 # production
+build/
 !build/favicon.ico
 !build/manifest.json
 
