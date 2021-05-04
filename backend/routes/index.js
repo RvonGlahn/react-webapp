@@ -5,7 +5,7 @@ const path = require("path");
 
 if (true) {
     // Serve any static files
-    // router.use(express.static(path.join(__dirname, "../../webdev/build")));
+    router.use(express.static(path.join(__dirname, "../../webdev/build")));
 
     // Handle React routing, return all requests to React app
     router.get("/", function (req, res) {

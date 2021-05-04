@@ -46,9 +46,12 @@ class Input extends React.Component {
     }
 
     async handleChange(event) {
+        var reg = /[^a-zA-Z0-9]/;
         this.setState({ [event.target.name]: event.target.value });
         if (this.state.name.length >= 4) {
-            let suggest = await loadSuggest(this.state.name);
+            let sanitized_name = this.state.name.replace(reg, '');
+
+            let suggest = await loadSuggest(sanitized_name);
             // convert this res in python to json
             suggest = suggest.substring(1, suggest.length - 1).replaceAll("'", '');
             suggest = suggest.split(',');

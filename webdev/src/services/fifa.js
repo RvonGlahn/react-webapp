@@ -8,7 +8,6 @@ export const loadPlayer = (req_data) => {
     };
 
     return submitPostRequest(new URL('fifa21', process.env.REACT_APP_SERVER_URL), header);
-    // return submitPostRequest(`http://localhost:9000/fifa`, header);
 };
 
 export async function loadSuggest(namePart) {
@@ -28,5 +27,5 @@ export async function loadLists() {
         headers: { 'Content-Type': 'application/json' },
     };
 
-    return submitGetRequest(new URL('fifa21', process.env.REACT_APP_SERVER_URL), header);
+    return submitGetRequest(new URL('fifa21/list', process.env.REACT_APP_SERVER_URL), header);
 }

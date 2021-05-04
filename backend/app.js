@@ -4,8 +4,21 @@ const path = require("path");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const compression = require("compression");
+const rateLimit = require("express-rate-limit");
 const cors = require("cors");
 const fs = require("fs");
+
+// create a write stream (in append mode) for morgan logger
+const accessLogStream = fs.createWriteStream(
+    path.join(__dirname, "logs", "access.log"),
+    { flags: "a" }
+);
+
+// set access limiter to page
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // limit each IP to 100 requests per windowMs
+});
 
 const indexRouter = require("./routes/index");
 const fifaRouter = require("./routes/fifa");
@@ -19,22 +32,18 @@ const hostname = "localhost";
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
+app.set("trust proxy", true);
 
+// add middleware
+app.use(morgan("combined", { stream: accessLogStream }));
 app.use(helmet());
 app.use(compression());
 app.use(cors());
-
-// create a write stream (in append mode)
-const accessLogStream = fs.createWriteStream(
-    path.join(__dirname, "logs", "access.log"),
-    { flags: "a" }
-);
-
-// setup the logger
-app.use(morgan("combined", { stream: accessLogStream }));
+app.use(limiter); //  apply limiter to all requests
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// routes
 app.use("/fifa21", fifaRouter);
 app.use("/", indexRouter);
 
@@ -42,6 +51,7 @@ app.use("/", indexRouter);
 app.use(function (req, res, next) {
     next(createError(404));
 });
+
 // error handler
 app.use(function (err, req, res, next) {
     // set locals, only providing error in development
@@ -56,3 +66,4 @@ app.use(function (err, req, res, next) {
 app.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
 });
+// https.createServer(app).listen()
