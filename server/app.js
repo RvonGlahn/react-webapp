@@ -1,7 +1,8 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
-const csurf = require("csurf");
+const csrf = require("csurf");
 const logger = require("morgan");
 const helmet = require("helmet");
 const compression = require("compression");
@@ -13,9 +14,8 @@ const fifaRouter = require("./routes/fifa");
 
 var app = express();
 
-const port = 8080;
-const hostname = "localhost";
-// const hostname = "192.168.178.20";
+const port = process.env.PORT;
+const hostname = process.env.HOST;
 const csrfProtection = csrf({ cookie: true });
 
 // create a write stream (in append mode) for morgan logger
@@ -30,6 +30,17 @@ const limiter = rateLimit({
     max: 100, // limit each IP to 100 requests per windowMs
 });
 
+// define cors options only for localhost and proxy
+const corsOptions = {
+    origin: [
+        "http://${process.env.HOST}:${process.env.PORT}/",
+        "${process.env.PROXY_URL}:${process.env.PROXY_PORT}/",
+    ],
+    methods: "GET,HEAD,POST",
+    preflightContinue: false,
+    optionsSuccessStatus: 200,
+};
+
 // allow proxy for nginx
 app.set("trust proxy", true);
 
@@ -37,12 +48,12 @@ app.set("trust proxy", true);
 app.use(logger("combined", { stream: accessLogStream }));
 app.use(helmet());
 app.use(compression());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(limiter); //  apply limiter to all requests
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "../webdev/build")));
+app.use(express.static(path.join(__dirname, process.env.BUILD_PATH)));
 
 // routes
 app.use("/fifa21", fifaRouter);
