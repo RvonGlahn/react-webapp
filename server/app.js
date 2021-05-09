@@ -14,8 +14,6 @@ const constants = require("./constants");
 
 var app = express();
 
-const port = process.env.PORT;
-const hostname = process.env.HOST;
 const csrfProtection = csrf({ cookie: true });
 
 // allow proxy for nginx
@@ -54,7 +52,4 @@ process.on("uncaughtException", function (err) {
     process.exit();
 });
 
-app.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
-});
-// https.createServer(app).listen()
+module.exports = app;
