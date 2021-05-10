@@ -11,11 +11,11 @@ class Input extends React.Component {
         super(props);
         this.state = {
             name: '',
-            position: '-',
+            position: '',
             age: '',
-            ability1Name: '-',
+            ability1Name: '',
             ability1Value: '',
-            ability2Name: '-',
+            ability2Name: '',
             ability2Value: '',
             suggestion: [],
             posList: [],
