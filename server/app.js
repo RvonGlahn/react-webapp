@@ -2,7 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
-const csrf = require("csurf");
 const logger = require("morgan");
 const helmet = require("helmet");
 const compression = require("compression");
@@ -13,8 +12,6 @@ const errorHandler = require("errorhandler");
 const constants = require("./constants");
 
 var app = express();
-
-const csrfProtection = csrf({ cookie: true });
 
 // allow proxy for nginx
 app.set("trust proxy", true);
@@ -43,7 +40,11 @@ if (process.env.NODE_ENV === "development") {
         })
     );
 } else if (process.env.NODE_ENV === "production") {
-    app.use(errorHandler());
+    app.use(
+        errorHandler({
+            showStack: false,
+        })
+    );
 }
 
 process.on("uncaughtException", function (err) {
