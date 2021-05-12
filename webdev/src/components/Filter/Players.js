@@ -21,9 +21,8 @@ function Players(props) {
         chunkedArray.forEach((element) => {
             table_render_list.push(
                 <tr key={element[0]} style={{ paddingTop: '40px' }}>
-                    <th scope="row">{rowName}</th>
                     {element.map((key, id) => (
-                        <td key={id} style={{ paddingLeft: '10px' }}>
+                        <td key={id} style={{ paddingLeft: '100px' }}>
                             {key} : {player[rowName][key]}
                         </td>
                     ))}
@@ -46,16 +45,14 @@ function Players(props) {
                     </summary>
                     <div className="details-content">
                         <Table striped>
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>1</th>
-                                    <th>2</th>
-                                    <th>3</th>
-                                </tr>
-                            </thead>
                             <tbody>
+                                <tr key="head1" style={{ paddingTop: '40px' }}>
+                                    <th scope="row">Info</th>
+                                </tr>
                                 {handle_table_input(props.players[id]['info'], player, 'info')}
+                                <tr key="head2" style={{ paddingTop: '40px' }}>
+                                    <th scope="row">Skills</th>
+                                </tr>
                                 {handle_table_input(props.players[id]['skills'], player, 'skills')}
                             </tbody>
                         </Table>
