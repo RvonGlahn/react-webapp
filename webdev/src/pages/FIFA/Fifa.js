@@ -1,8 +1,8 @@
-import React from "react";
-import PageContent from "../../components/PageContent";
-import Input from "../../components/Filter/Input";
-import { homeObjOne } from "./Data";
-import { useEffect } from "react";
+import React from 'react';
+import PageContent from '../../components/PageContent';
+import Input from '../../components/FIFASearch/Input';
+import { homeObjOne } from './Data';
+import { useEffect } from 'react';
 
 function Fifa() {
     useEffect(() => {
