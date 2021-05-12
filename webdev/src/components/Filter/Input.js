@@ -33,15 +33,13 @@ class Input extends React.Component {
     }
 
     async handleLoad() {
-        let names = await loadLists();
-        names = names.substring(2, names.length - 2).replaceAll("'", '');
-        names = names.replace('[', '');
-        names = names.split(',');
+        let json_data = await loadLists();
+        const attributes = JSON.parse(json_data);
 
         this.setState({
             ...this.state,
-            posList: ['-'].concat(names.slice(48)),
-            attrList: ['-'].concat(names.slice(0, 47)),
+            posList: [''].concat(attributes['positions']),
+            attrList: [''].concat(attributes['skills']),
         });
     }
 
@@ -51,10 +49,9 @@ class Input extends React.Component {
         if (this.state.name.length >= 4) {
             let sanitized_name = this.state.name.replace(reg, '');
 
-            let suggest = await loadSuggest(sanitized_name);
+            let suggest_json = await loadSuggest(sanitized_name);
             // convert this res in python to json
-            suggest = suggest.substring(1, suggest.length - 1).replaceAll("'", '');
-            suggest = suggest.split(',');
+            const suggest = JSON.parse(suggest_json);
             this.setState({ ...this.state, suggestion: suggest });
         }
     }
@@ -67,6 +64,8 @@ class Input extends React.Component {
         reqJSON.ability2Name = reqJSON.ability2Name.trim();
 
         const players = await loadPlayer(reqJSON);
+        //const players = JSON.parse(players_json);
+
         this.setState({ ...this.state, players: players });
 
         this.setState({
@@ -101,9 +100,7 @@ class Input extends React.Component {
                         <ButtonSubmit buttonStyle="btn--primary--form" buttonSize="btn--wide" buttonColor="blue" onClick={this.handleClick} />
                     </form>
                 </div>
-                <div>
-                    {typeof this.state.players[0] === 'object' && this.state.players[0].data !== undefined && <Players values={this.state.players} />}
-                </div>
+                <div>{Object.keys(this.state.players).length !== 0 && <Players players={this.state.players} />}</div>
             </div>
         );
     }
