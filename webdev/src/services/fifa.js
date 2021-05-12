@@ -7,7 +7,7 @@ export const loadPlayer = (req_data) => {
         body: JSON.stringify(req_data),
     };
 
-    return submitPostRequest(new URL('fifa21', process.env.REACT_APP_SERVER_URL), header);
+    return submitPostRequest(new URL('api/search', 'http://192.168.178.20:5000'), header);
 };
 
 export async function loadSuggest(namePart) {
@@ -15,8 +15,8 @@ export async function loadSuggest(namePart) {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     };
-    const urlEnd = `fifa21?part=${encodeURIComponent(namePart)}`;
-    const url = new URL(urlEnd, process.env.REACT_APP_SERVER_URL);
+    const urlEnd = `api/suggest?part=${encodeURIComponent(namePart)}`;
+    const url = new URL(urlEnd, 'http://192.168.178.20:5000');
 
     return submitGetRequest(url, header);
 }
@@ -26,6 +26,7 @@ export async function loadLists() {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     };
+    const url = new URL('api/attributes', 'http://192.168.178.20:5000');
 
-    return submitGetRequest(new URL('fifa21/list', process.env.REACT_APP_SERVER_URL), header);
+    return submitGetRequest(url, header);
 }
