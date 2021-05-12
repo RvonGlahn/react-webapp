@@ -19,6 +19,8 @@ const corsOptions = {
     origin: [
         "http://${process.env.HOST}:${process.env.PORT}/",
         "${process.env.PROXY_URL}:${process.env.PROXY_PORT}/",
+        "http://localhost:5000/api/*",
+        "http://192.168.178.20:5000/api/*",
     ],
     methods: "GET,HEAD,POST",
     preflightContinue: false,

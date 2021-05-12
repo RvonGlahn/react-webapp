@@ -1,4 +1,7 @@
 import { submitGetRequest, submitPostRequest } from '../network';
+require('dotenv').config();
+
+const apiURL = process.env.REACT_APP_FLASK_URL;
 
 export const loadPlayer = (req_data) => {
     const header = {
@@ -7,7 +10,7 @@ export const loadPlayer = (req_data) => {
         body: JSON.stringify(req_data),
     };
 
-    return submitPostRequest(new URL('api/search', 'http://192.168.178.20:5000'), header);
+    return submitPostRequest(new URL('api/search', apiURL), header);
 };
 
 export async function loadSuggest(namePart) {
@@ -16,7 +19,7 @@ export async function loadSuggest(namePart) {
         headers: { 'Content-Type': 'application/json' },
     };
     const urlEnd = `api/suggest?part=${encodeURIComponent(namePart)}`;
-    const url = new URL(urlEnd, 'http://192.168.178.20:5000');
+    const url = new URL(urlEnd, apiURL);
 
     return submitGetRequest(url, header);
 }
@@ -26,7 +29,7 @@ export async function loadLists() {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     };
-    const url = new URL('api/attributes', 'http://192.168.178.20:5000');
+    const url = new URL('api/attributes', apiURL);
 
     return submitGetRequest(url, header);
 }
