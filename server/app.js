@@ -18,7 +18,7 @@ app.set("trust proxy", true);
 app.use(logger("combined", { stream: constants.accessLogStream }));
 app.use(
     helmet({
-        contentSecurityPolicy: constants.cspOptions,
+        contentSecurityPolicy: false,
     })
 );
 app.use(compression());

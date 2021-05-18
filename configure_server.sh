@@ -3,7 +3,6 @@
 # make script executbale
 # chmod +x ~/configure_server.sh
 
-
 read -p "Insert IP of your current device: " DEVICE_IP
 
 read -p "Node.js Server Port Number: " SERVER_PORT
@@ -12,17 +11,20 @@ read -p "Flask API Port Number: " API_PORT
 
 read -p "Proxy Port Number: " PROXY_PORT
 
+mkdir server/logs
 
 # delete old .env files 
 if [ -f /webdev/.env ]; then
 	rm /webdev/.env
+fi
 	
 if [ -f /server/.env ]; then
 	rm /server/.env
-	
+fi
+
 if [ -f /api/.env ]; then
 	rm /api/.env
-	
+fi
 
 # create .env file in react app directory
 while read line; do
@@ -35,9 +37,7 @@ while read line; do
     else 
 		echo "${line}"
 	fi
-done < /webdev/.env.default > /webdev/.env
-}
-
+done < webdev/.env.default > webdev/.env
 
 
 # create .env file in node.js directory
@@ -60,8 +60,8 @@ while read line; do
     else 
 		echo "${line}"
 	fi
-done < /webdev/.env.default > /webdev/.env
-}
+done < server/.env.default > server/.env
+
 
 
 # cretae .env file in Flask API directory
@@ -75,5 +75,4 @@ while read line; do
     else 
 		echo "${line}"
 	fi
-done < /webdev/.env.default > /webdev/.env
-}
+done < ../FIFA_search/.env.default > ../FIFA_search/webdev/.env
