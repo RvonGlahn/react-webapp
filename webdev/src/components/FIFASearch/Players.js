@@ -22,7 +22,7 @@ function Players(props) {
             table_render_list.push(
                 <tr key={element[0]} style={{ paddingTop: '40px' }}>
                     {element.map((key, id) => (
-                        <td key={id} style={{ paddingLeft: '100px' }}>
+                        <td key={id} style={{ paddingLeft: '100px', textAlign: 'left' }}>
                             {key} : {player[rowName][key]}
                         </td>
                     ))}
@@ -47,11 +47,16 @@ function Players(props) {
                         <Table striped>
                             <tbody>
                                 <tr key="head1" style={{ paddingTop: '40px' }}>
-                                    <th scope="row">Info</th>
+                                    <th scope="row" style={{ paddingLeft: '100px', textAlign: 'left' }}>
+                                        Info
+                                    </th>
                                 </tr>
                                 {handle_table_input(props.players[id]['info'], player, 'info')}
+                                <p>_______________________</p>
                                 <tr key="head2" style={{ paddingTop: '40px' }}>
-                                    <th scope="row">Skills</th>
+                                    <th scope="row" style={{ paddingLeft: '100px', textAlign: 'left' }}>
+                                        Skills
+                                    </th>
                                 </tr>
                                 {handle_table_input(props.players[id]['skills'], player, 'skills')}
                             </tbody>
