@@ -16,9 +16,13 @@ app.set("trust proxy", true);
 
 // add middleware
 app.use(logger("combined", { stream: constants.accessLogStream }));
-app.use(helmet());
+app.use(
+    helmet({
+        contentSecurityPolicy: constants.cspOptions,
+    })
+);
 app.use(compression());
-app.use(cors());
+app.use(cors(constants.corsOptions));
 app.use(constants.limiter); //  apply limiter to all requests
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -27,7 +31,7 @@ app.use(express.static(path.join(__dirname, process.env.BUILD_PATH)));
 
 // routes
 if (process.env.NODE_ENV == "production") {
-    app.get("/*", function (req, res) {
+    app.get("*", function (req, res) {
         res.sendFile(
             path.join(__dirname, process.env.BUILD_PATH, "index.html")
         );
