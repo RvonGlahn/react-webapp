@@ -3,6 +3,14 @@
 # make script executbale
 # chmod +x ~/configure_server.sh
 
+IP=$(hostname -I)
+
+echo "This script helps to configure the .env files for react app, flask api and express server."
+echo "Make shure that you´ve already cloned the repository for the flask api!"
+echo "-------------------------------"
+echo "Your local IP is: $IP"
+echo ""
+
 read -p "Insert IP of your current device: " DEVICE_IP
 
 read -p "Node.js Server Port Number: " SERVER_PORT
