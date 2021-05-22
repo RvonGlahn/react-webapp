@@ -42,7 +42,7 @@ while read line; do
 		echo "REACT_APP_SERVER_URL=${DEVICE_IP}"
 		
 	elif [[ $line == *"REACT_APP_FLASK_URL"* ]]; then
-		echo "REACT_APP_FLASK_URL==${DEVICE_IP}:${API_PORT}"
+		echo "REACT_APP_FLASK_URL=${DEVICE_IP}:${API_PORT}"
 		
     else 
 		echo "${line}"
@@ -80,7 +80,7 @@ while read line; do
 		echo "FLASK_RUN_HOST=${DEVICE_IP}"
 		
 	elif [[ $line == *"FLASK_RUN_PORT"* ]]; then
-		echo "FLASK_RUN_PORT:${API_PORT}"
+		echo "FLASK_RUN_PORT=${API_PORT}"
 		
     else 
 		echo "${line}"
