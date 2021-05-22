@@ -33,3 +33,14 @@ export async function loadLists() {
 
     return submitGetRequest(url, header);
 }
+
+export async function loadFIFAVersion(version) {
+    const header = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+    };
+    const urlEnd = `api/version?year=${encodeURIComponent(version)}`;
+    const url = new URL(urlEnd, apiURL);
+
+    return submitGetRequest(url, header);
+}

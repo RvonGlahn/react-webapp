@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Players from './Players';
-import { loadPlayer, loadSuggest, loadLists } from '../../services/fifa';
+import { loadPlayer, loadSuggest, loadLists, loadFIFAVersion } from '../../services/fifa';
 
 class Input extends React.Component {
     constructor(props) {
@@ -15,11 +15,12 @@ class Input extends React.Component {
             position: '',
             age: '',
             player_value: '',
-            fifa_versions: [21, 20, 19, 18, 17, 16, 15],
+            fifa_version: '',
             ability1Name: '',
             ability1Value: '',
             ability2Name: '',
             ability2Value: '',
+            fifa_versions: [21, 20, 19, 18, 17, 16, 15],
             suggestion: [],
             posList: [],
             attrList: [],
@@ -29,6 +30,7 @@ class Input extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleLoad = this.handleLoad.bind(this);
+        this.handleChangeFIFA = this.handleChangeFIFA.bind(this);
     }
 
     componentDidMount() {
@@ -49,7 +51,9 @@ class Input extends React.Component {
     async handleChange(event) {
         var reg = /[^a-zA-Z0-9]/;
         this.setState({ [event.target.name]: event.target.value });
-        if (this.state.name.length >= 4) {
+
+        // only if
+        if (this.state.name.length >= 4 && event.target.name === 'name') {
             let sanitized_name = this.state.name.replace(reg, '');
 
             let suggest_json = await loadSuggest(sanitized_name);
@@ -57,6 +61,16 @@ class Input extends React.Component {
             const suggest = JSON.parse(suggest_json);
             this.setState({ ...this.state, suggestion: suggest });
         }
+    }
+
+    async handleChangeFIFA(event) {
+        this.setState({
+            ...this.state,
+            suggestion: [],
+            [event.target.name]: event.target.value,
+        });
+
+        loadFIFAVersion(event.target.value);
     }
 
     async handleClick() {
@@ -159,7 +173,7 @@ class Input extends React.Component {
 
                         <Form.Group as={Col} controlId="formGridVersion">
                             <Form.Label>FIFA Version</Form.Label>
-                            <Form.Control as="select" defaultValue="Choose...">
+                            <Form.Control as="select" name="fifa_version" value={this.state.fifa_version} onChange={this.handleChangeFIFA}>
                                 {this.state['fifa_versions'].map((position, i) => (
                                     <option value={position} key={i}>
                                         FIFA {position}
