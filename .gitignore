@@ -24,8 +24,7 @@ build/
 
 # misc
 .DS_Store
-# .env
-# webdev/.env
+.env
 .env.local
 .env.development.local
 .env.test.local
