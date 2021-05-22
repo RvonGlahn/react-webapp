@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Button, FormGroup, FormControl } from 'react-bootstrap';
-import './Hidden.css';
 import '../../components/FIFASearch/Input.css';
 
 export default function Login() {

@@ -49,3 +49,20 @@ export const homeObjThree = {
     linkURL: '//www.github.com/RvonGlahn/CNN',
     alt: 'Vault',
 };
+
+export const objFIFA = {
+    lightBg: false,
+    lightText: true,
+    lightTextDesc: true,
+    topLine: 'FIFA Search API',
+    headline: 'Finde in FIFA 21 die vielversprechendsten Talente',
+    description:
+        'Anhand von verschiedenen Filtern erfährst du alle wichtigen Attribute deiner Spieler. Starte deine Karriere mit talentierten aber auch bezahlbaren Spielern.',
+    buttonLabel: 'Zum Code',
+    imgStart: '',
+    img: 'images/fifa.svg',
+    img_credit: `Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons" style="color:#ffffff">Roundicons</a> from 
+            <a href="https://www.flaticon.com/" title="Flaticon" style="color:#ffffff"> www.flaticon.com</a>`,
+    linkURL: '//www.github.com/RvonGlahn/FIFA_search',
+    alt: 'Credit Card',
+};

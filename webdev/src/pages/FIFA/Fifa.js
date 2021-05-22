@@ -1,7 +1,5 @@
 import React from 'react';
-import PageContent from '../../components/PageContent';
 import Input from '../../components/FIFASearch/Input';
-import { homeObjOne } from './Data';
 import { useEffect } from 'react';
 
 function Fifa() {
@@ -12,7 +10,6 @@ function Fifa() {
     return (
         <>
             <Input />
-            <PageContent {...homeObjOne} />
         </>
     );
 }
