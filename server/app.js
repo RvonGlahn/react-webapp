@@ -17,8 +17,29 @@ app.set("trust proxy", true);
 // add middleware
 app.use(logger("combined", { stream: constants.accessLogStream }));
 app.use(
+    /*
     helmet({
         contentSecurityPolicy: false,
+    })
+    */
+    helmet.contentSecurityPolicy({
+        useDefaults: true,
+        directives: {
+            defaultSrc: [
+                "'self'",
+                "http://localhost:*",
+                "http://192.168.178.20:*",
+                "https://fonts.googleapis.com",
+                "https://fonts.gstatic.com",
+            ],
+            scriptSrc: ["'self'", "http://localhost:*"],
+            imgSrc: [
+                "'self'",
+                "http://localhost:8080/favicon.ico",
+                "http://localhost:8080/logo192.png",
+            ],
+            upgradeInsecureRequests: null,
+        },
     })
 );
 app.use(compression());

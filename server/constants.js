@@ -30,21 +30,21 @@ const corsOptions = {
 const cspOptions = {
     useDefaults: true,
     directives: {
-        "default-src": ["self", "http://192.168.178.20:5000/api/"],
-        "connect-src": [
+        defaultSrc: [
             "'self'",
-            "http://192.168.178.20:5000/api/attributes",
-            "http://192.168.178.20:5000/api/search",
-            "http://192.168.178.20:5000/api/suggest",
+            "http://localhost:*",
+            "http://192.168.178.20:*",
+            "http://192.168.178.60:*",
+            "https://fonts.googleapis.com",
+            "https://fonts.gstatic.com",
         ],
-        "img-src": [
+        scriptSrc: ["'self'", "http://localhost:*", "http://192.168.178.60:*"],
+        imgSrc: [
             "'self'",
             "http://localhost:8080/favicon.ico",
             "http://localhost:8080/logo192.png",
         ],
-        "manifest-src": ["http://localhost:8080/manifest.json"],
-        "style-src": null,
-        "style-src-elem": null,
+        upgradeInsecureRequests: null,
     },
 };
 
