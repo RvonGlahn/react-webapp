@@ -19,7 +19,7 @@ read -p "Flask API Port Number: " API_PORT
 
 read -p "Proxy Port Number: " PROXY_PORT
 
-if [ ! -d /server/logs ]; then
+if [ ! -d server/logs ]; then
 	mkdir server/logs
 fi
 
