@@ -39,10 +39,10 @@ fi
 # create .env file in react app directory
 while read line; do
 	if [[ $line == *"REACT_APP_SERVER_URL"* ]]; then
-		echo "REACT_APP_SERVER_URL=${DEVICE_IP}"
+		echo "REACT_APP_SERVER_URL=http://${DEVICE_IP}"
 		
 	elif [[ $line == *"REACT_APP_FLASK_URL"* ]]; then
-		echo "REACT_APP_FLASK_URL=${DEVICE_IP}:${API_PORT}"
+		echo "REACT_APP_FLASK_URL=http://${DEVICE_IP}:${API_PORT}"
 		
     else 
 		echo "${line}"

@@ -23,8 +23,9 @@ app.use(
             defaultSrc: [
                 "'self'",
                 "http://localhost:*",
-                "$http://${process.env.HOST}:*",
-                "$https://${process.env.HOST}:*",
+                "http://${process.env.HOST}:*",
+                "https://${process.env.HOST}:*",
+                "http://192.168.178.80:*",
                 "https://fonts.googleapis.com",
                 "https://fonts.gstatic.com",
             ],

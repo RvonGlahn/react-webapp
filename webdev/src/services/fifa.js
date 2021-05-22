@@ -1,7 +1,7 @@
 import { submitGetRequest, submitPostRequest } from '../network';
 require('dotenv').config();
 
-const apiURL = "http://${process.env.REACT_APP_FLASK_URL}";
+const apiURL = process.env.REACT_APP_FLASK_URL;
 
 export const loadPlayer = (req_data) => {
     const header = {
