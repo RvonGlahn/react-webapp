@@ -1,15 +1,8 @@
 .player {
     float: left;
-    padding-left: 3rem;
+    padding-left: 1rem;
     text-align: center;
     width: 15rem;
-}
-
-.container {
-    width: 60%;
-    margin: 0 auto;
-    text-align: center;
-    padding-left: 100px;
 }
 
 * {
@@ -32,7 +25,7 @@ details {
 }
 
 summary {
-    padding: 0.25rem 1rem;
+    padding: 0.25rem 0.25rem;
     background-color: var(--primary-color);
     font: bold 1.25rem/2 sans-serif;
     color: floralwhite;
@@ -63,7 +56,8 @@ details[open] summary {
 }
 
 .details-content {
-    height: 30rem;
+    height: fit-content;
+    block-size: fit-content;
     margin: 0;
     padding: 0.25rem 1rem;
     background-color: white;
@@ -89,17 +83,15 @@ details[open] summary {
 
 .player {
     float: left;
-    padding-left: 3rem;
     text-align: center;
     width: 15rem;
 }
 
-@media screen and (max-width: 512px) {
+@media screen and (max-width: 768px) {
     .container {
-        width: 60%;
+        width: 95%;
         margin: 0 auto;
         text-align: center;
-        padding-left: 100px;
     }
 
     * {
@@ -122,15 +114,13 @@ details[open] summary {
     }
 
     summary {
-        padding: 0.25rem 1rem;
         background-color: var(--primary-color);
-        font: bold 1.25rem/2 sans-serif;
+        font: 1.25rem/2 sans-serif;
         color: floralwhite;
         border: none;
         border-radius: 1px;
         box-shadow: 0 -1px 1px 1px var(--primary-color);
         cursor: pointer;
-        height: 3rem;
         /*list-style: none;*/ /* Triangle not shown */
     }
 
@@ -149,7 +139,7 @@ details[open] summary {
     }
 
     .details-content {
-        height: 12rem;
+        height: fit-content;
         margin: 0;
         padding: 0.25rem 1rem;
         background-color: white;
@@ -160,10 +150,12 @@ details[open] summary {
     }
 
     .player {
+        margin-top: 0.5em;
         float: left;
         padding-left: 1rem;
         text-align: center;
         width: 7rem;
+        font-size: 12px;
     }
 
     .attribute {
@@ -171,5 +163,34 @@ details[open] summary {
         padding-right: 1rem;
         width: 10rem;
         text-align: left;
+    }
+
+    /* Force table to not be like tables anymore */
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        border: 0px solid #ccc;
+    }
+
+    td {
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 10%;
     }
 }
