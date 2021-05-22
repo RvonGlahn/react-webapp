@@ -17,18 +17,14 @@ app.set("trust proxy", true);
 // add middleware
 app.use(logger("combined", { stream: constants.accessLogStream }));
 app.use(
-    /*
-    helmet({
-        contentSecurityPolicy: false,
-    })
-    */
     helmet.contentSecurityPolicy({
         useDefaults: true,
         directives: {
             defaultSrc: [
                 "'self'",
                 "http://localhost:*",
-                "http://192.168.178.20:*",
+                "$http://${process.env.HOST}:*",
+                "$https://${process.env.HOST}:*",
                 "https://fonts.googleapis.com",
                 "https://fonts.gstatic.com",
             ],

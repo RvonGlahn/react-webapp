@@ -11,7 +11,7 @@ echo "-------------------------------"
 echo "Your local IP is: $IP"
 echo ""
 
-read -p "Insert IP of your current device: " DEVICE_IP
+read -p "Insert IPv4 of your current device: " DEVICE_IP
 
 read -p "Node.js Server Port Number: " SERVER_PORT
 
@@ -19,7 +19,9 @@ read -p "Flask API Port Number: " API_PORT
 
 read -p "Proxy Port Number: " PROXY_PORT
 
-mkdir server/logs
+if [ ! -d /server/logs ]; then
+	mkdir server/logs
+fi
 
 # delete old .env files 
 if [ -f /webdev/.env ]; then
@@ -40,7 +42,7 @@ while read line; do
 		echo "REACT_APP_SERVER_URL=${DEVICE_IP}"
 		
 	elif [[ $line == *"REACT_APP_FLASK_URL"* ]]; then
-		echo "REACT_APP_FLASK_URL=${DEVICE_IP}:${API_PORT}"
+		echo "REACT_APP_FLASK_URL==${DEVICE_IP}:${API_PORT}"
 		
     else 
 		echo "${line}"
@@ -54,7 +56,7 @@ while read line; do
 		echo "HOST=${DEVICE_IP}"
 		
 	elif [[ $line == *"SERVER_PORT"* ]]; then
-		echo "SERVER_PORT=${SERVER_PORT}"
+		echo "PORT=${SERVER_PORT}"
 		
 	elif [[ $line == *"PROXY_URL"* ]]; then
 		echo "PROXY_URL=${DEVICE_IP}"
@@ -83,4 +85,4 @@ while read line; do
     else 
 		echo "${line}"
 	fi
-done < ../FIFA_search/.env.default > ../FIFA_search/webdev/.env
+done < ../FIFA_search/.env.default > ../FIFA_search/.env
