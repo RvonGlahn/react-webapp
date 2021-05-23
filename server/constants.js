@@ -17,8 +17,8 @@ const limiter = rateLimit({
 // define cors options only for localhost and proxy
 const corsOptions = {
     origin: [
-        "http://${process.env.HOST}:${process.env.PORT}/",
-        "${process.env.PROXY_URL}:${process.env.PROXY_PORT}/",
+        `http://${process.env.HOST}:${process.env.PORT}/`,
+        `${process.env.PROXY_URL}:${process.env.PROXY_PORT}/`,
         "http://localhost:5000/api/",
         "http://192.168.178.20:5000/api/attributes",
     ],
@@ -27,22 +27,29 @@ const corsOptions = {
     optionsSuccessStatus: 200,
 };
 
+// define csp options for helmet module
 const cspOptions = {
     useDefaults: true,
     directives: {
         defaultSrc: [
             "'self'",
             "http://localhost:*",
-            "http://192.168.178.20:*",
-            "http://192.168.178.60:*",
+            `http://${process.env.HOST}:*`,
+            `http://${process.env.HOST}:*`,
             "https://fonts.googleapis.com",
             "https://fonts.gstatic.com",
         ],
-        scriptSrc: ["'self'", "http://localhost:*", "http://192.168.178.60:*"],
+        scriptSrc: [
+            "'self'",
+            "http://localhost:*",
+            `http://${process.env.HOST}:*`,
+        ],
         imgSrc: [
             "'self'",
             "http://localhost:8080/favicon.ico",
             "http://localhost:8080/logo192.png",
+            `http://${process.env.HOST}:*`,
+            `http://${process.env.HOST}:*`,
         ],
         upgradeInsecureRequests: null,
     },
@@ -52,11 +59,3 @@ exports.accessLogStream = accessLogStream;
 exports.limiter = limiter;
 exports.corsOptions = corsOptions;
 exports.cspOptions = cspOptions;
-
-/*
-"'self'",
-            "https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap",
-            "http://localhost:8080/static/css/main.42381307.chunk.css",
-            "http://localhost:8080/static/js/runtime-main.442b001a.js",
-            "http://localhost:8080/static/js/main.b80ed727.chunk.js",
-            "http://localhost:8080/static/js/2.f9676032.chunk.js", */

@@ -16,29 +16,7 @@ app.set("trust proxy", true);
 
 // add middleware
 app.use(logger("combined", { stream: constants.accessLogStream }));
-app.use(
-    helmet.contentSecurityPolicy({
-        useDefaults: true,
-        directives: {
-            defaultSrc: [
-                "'self'",
-                "http://localhost:*",
-                "http://${process.env.HOST}:*",
-                "https://${process.env.HOST}:*",
-                "http://192.168.178.80:*",
-                "https://fonts.googleapis.com",
-                "https://fonts.gstatic.com",
-            ],
-            scriptSrc: ["'self'", "http://localhost:*"],
-            imgSrc: [
-                "'self'",
-                "http://localhost:8080/favicon.ico",
-                "http://localhost:8080/logo192.png",
-            ],
-            upgradeInsecureRequests: null,
-        },
-    })
-);
+app.use(helmet.contentSecurityPolicy(constants.cspOptions));
 app.use(compression());
 app.use(cors(constants.corsOptions));
 app.use(constants.limiter); //  apply limiter to all requests
