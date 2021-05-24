@@ -83,12 +83,7 @@ class Input extends React.Component {
         const players = await loadPlayer(reqJSON);
         //const players = JSON.parse(players_json);
 
-        this.setState({ ...this.state, players: players });
-
-        this.setState({
-            ...this.state,
-            suggestion: [],
-        });
+        this.setState({ ...this.state, players: players, suggestion: [] });
     }
 
     render() {

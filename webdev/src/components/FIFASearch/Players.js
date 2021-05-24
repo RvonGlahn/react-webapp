@@ -14,21 +14,53 @@ function Players(props) {
         return chunks;
     };
 
+    const backgroundColor = (value) => {
+        let color = '#000000';
+        if (value >= 80) {
+            color = '#4caf50';
+        } else if (value >= 70) {
+            color = '#9bbf30';
+        } else if (value >= 60) {
+            color = '#ffc940';
+        } else {
+            color = '#e77e23';
+        }
+        return color;
+    };
+
     const handle_table_input = (data, player, rowName) => {
         const chunkedArray = chunk(Object.keys(data), 3);
         let table_render_list = [];
 
-        chunkedArray.forEach((element) => {
-            table_render_list.push(
-                <tr key={element[0]}>
-                    {element.map((key, id) => (
-                        <td key={id} style={{ textAlign: 'left' }}>
-                            {key} : {player[rowName][key]}
-                        </td>
-                    ))}
-                </tr>
-            );
-        });
+        if (rowName === 'info') {
+            chunkedArray.forEach((element) => {
+                table_render_list.push(
+                    <tr key={element[0]}>
+                        {element.map((key, id) => (
+                            <td key={id} style={{ textAlign: 'left' }}>
+                                <span>{key}</span>
+                                <span> : {player[rowName][key]}</span>
+                            </td>
+                        ))}
+                    </tr>
+                );
+            });
+        } else {
+            chunkedArray.forEach((element) => {
+                table_render_list.push(
+                    <tr key={element[0]}>
+                        {element.map((key, id) => (
+                            <td key={id} style={{ textAlign: 'left' }}>
+                                <span style={{ padding: '2px', color: 'white', background: backgroundColor(player[rowName][key]) }}>
+                                    {player[rowName][key]}
+                                </span>
+                                <span> {key}</span>
+                            </td>
+                        ))}
+                    </tr>
+                );
+            });
+        }
 
         return table_render_list;
     };
@@ -38,10 +70,10 @@ function Players(props) {
             {props.players.map((player, id) => (
                 <details key={id}>
                     <summary>
-                        <div className="player">{player['info']['short_name']}</div>
-                        <div className="player">{player['info']['overall']}</div>
-                        <div className="player">{player['info']['player_positions']}</div>
-                        <div className="player">{player['info']['club_name']}</div>
+                        <div className="player">{player['info']['short name']}</div>
+                        <div className="player">{player['skills']['overall']}</div>
+                        <div className="player">{player['info']['player positions']}</div>
+                        <div className="player">{player['info']['club name']}</div>
                     </summary>
                     <div className="details-content">
                         <Table borderless size="sm">
