@@ -162,7 +162,7 @@ class Input extends React.Component {
                         </Form.Group>
 
                         <Form.Group as={Col} controlId="formGridWert">
-                            <Form.Label>Spieler Wert</Form.Label>
+                            <Form.Label>Maximaler Spieler Wert</Form.Label>
                             <Form.Control type="text" name="player_value" value={this.state.player_value} onChange={this.handleChange} />
                         </Form.Group>
 

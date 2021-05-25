@@ -94,24 +94,24 @@ img {
     display: inline-block;
 }
 
-@media screen and (max-width: 991px) {
-    .container {
-        padding-right: 10px;
-        padding-left: 10px;
-    }
-}
-
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 912px) {
     .home__hero-text-wrapper {
         padding-bottom: 65px;
     }
 
     .col {
         max-width: 100%;
-        flex-basis: 100%;
+        flex-basis: 50%;
     }
 
     .coll {
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+}
+
+@media screen and (max-width: 412px) {
+    .col {
         max-width: 100%;
         flex-basis: 100%;
     }
