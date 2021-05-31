@@ -19,21 +19,21 @@ read -p "Flask API Port Number: " API_PORT
 
 read -p "Proxy Port Number: " PROXY_PORT
 
-if [ ! -d server/logs ]; then
-	mkdir server/logs
+if [ ! -d express-app/logs ]; then
+	mkdir express-app/logs
 fi
 
 # delete old .env files 
-if [ -f /webdev/.env ]; then
-	rm /webdev/.env
+if [ -f /react-app/.env ]; then
+	rm /react-app/.env
 fi
 	
-if [ -f /server/.env ]; then
-	rm /server/.env
+if [ -f /express-app/.env ]; then
+	rm /express-app/.env
 fi
 
-if [ -f /api/.env ]; then
-	rm /api/.env
+if [ -f /fifa-api/.env ]; then
+	rm /fifa-api/.env
 fi
 
 # create .env file in react app directory
@@ -47,7 +47,7 @@ while read line; do
     else 
 		echo "${line}"
 	fi
-done < webdev/.env.default > webdev/.env
+done < react-app/.env.default > react-app/.env
 
 
 # create .env file in node.js directory
@@ -70,7 +70,7 @@ while read line; do
     else 
 		echo "${line}"
 	fi
-done < server/.env.default > server/.env
+done < express-app/.env.default > express-app/.env
 
 
 
@@ -85,4 +85,4 @@ while read line; do
     else 
 		echo "${line}"
 	fi
-done < ../FIFA_search/.env.default > ../FIFA_search/.env
+done < fifa-api/.env.default > fifa-api/.env

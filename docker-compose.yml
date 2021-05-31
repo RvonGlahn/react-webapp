@@ -2,23 +2,23 @@ version: "3.8"
 
 services:
     api:
-        build: api
+        build: fifa-api
         container_name: fifa_api
-        env_file: api/.env
+        env_file: fifa-api/.env
         ports:
             - "5000:5000"
         networks:
             - app-network
     web:
         build:
-            context: backend
+            context: express-app
             dockerfile: Dockerfile
         image: nodejs
         container_name: nodejs
         restart: unless-stopped
         volumes:
-            - ./frontend:/opt/frontend
-        env_file: backend/.env
+            - ./express-app:/opt/express-app
+        env_file: express-app/.env
         ports:
             - "80:8080"
         networks:
