@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+    api:
+        build: api
+        container_name: fifa_api
+        env_file: api/.env
+        ports:
+            - "5000:5000"
+        networks:
+            - app-network
+    web:
+        build:
+            context: backend
+            dockerfile: Dockerfile
+        image: nodejs
+        container_name: nodejs
+        restart: unless-stopped
+        volumes:
+            - ./frontend:/opt/frontend
+        env_file: backend/.env
+        ports:
+            - "80:8080"
+        networks:
+            - app-network
+
+networks:
+    app-network:
+        driver: bridge
