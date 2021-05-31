@@ -1,0 +1,9 @@
+[submodule "express-app"]
+	path = express-app
+	url = https://github.com/RvonGlahn/express-app.git
+[submodule "react-app"]
+	path = react-app
+	url = https://github.com/RvonGlahn/react-app.git
+[submodule "fifa-api"]
+	path = fifa-api
+	url = https://github.com/RvonGlahn/fifa-api.git
