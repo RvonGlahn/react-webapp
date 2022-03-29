@@ -5,12 +5,12 @@ services:
         build: 
             context: ./fifa-api
             dockerfile: Dockerfile
-        container_name: fifa_api
+        container_name: FIFA_API
         restart: unless-stopped
         ports:
             - "$FLASK_RUN_PORT:$FLASK_RUN_PORT"
-        # networks:
-        #     - app-network
+        networks:
+            - app-network
         environment:
             - FLASK_APP=$FLASK_APP
             - FLASK_ENV=$FLASK_ENV
@@ -34,31 +34,30 @@ services:
             - REACT_APP_FLASK_URL=$FLASK_RUN_HOST:$FLASK_RUN_PORT
             - REACT_DOCKER_PORT=$REACT_DOCKER_PORT
 
-    # backend:
-    #     depends_on:
-    #         - api
-    #         - frontend
-    #     build:
-    #         context: ./express-app
-    #         dockerfile: Dockerfile
-    #     container_name: nodejs
-    #     restart: unless-stopped
-    #     volumes:
-    #         - /server/node_modules
-    #         - ./express-app/build:/server/build
-    #     # env_file: ./backend/.env
-    #     ports:
-    #         - "80:$NODE_DOCKER_PORT"
-    #     networks:
-    #         - app-network
-    #     environment:
-    #         - NODE_ENV=$NODE_ENV
-    #         - APP_NAME=$NODE_APP_NAME
-    #         - HOST=$NODE_HOST
-    #         - PORT=$NODE_DOCKER_PORT
-    #         - BUILD_PATH=$BUILD_PATH
-    #         - FLASK_URL=$FLASK_RUN_HOST:$FLASK_RUN_PORT
+    backend:
+        depends_on:
+            - api
+            - frontend
+        build:
+            context: ./express-app
+            dockerfile: Dockerfile
+        container_name: express_app
+        restart: unless-stopped
+        volumes:
+            - /server/node_modules
+            - ./express-app/build:/server/build
+        ports:
+            - "80:$NODE_DOCKER_PORT"
+        networks:
+            - app-network
+        environment:
+            - NODE_ENV=$NODE_ENV
+            - APP_NAME=$NODE_APP_NAME
+            - HOST=$NODE_HOST
+            - PORT=$NODE_DOCKER_PORT
+            - BUILD_PATH=$BUILD_PATH
+            - FLASK_URL=$FLASK_RUN_HOST:$FLASK_RUN_PORT
 
-# networks:
-#     app-network:
-#         driver: bridge
+networks:
+    app-network:
+        driver: bridge
