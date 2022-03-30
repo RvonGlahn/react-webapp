@@ -26,15 +26,15 @@ cp -R /build/* ../express-app/build
 
 ### Run with Docker
 
-Just  run the docker-compose on your local machine.
+Just run the docker-compose on your local machine.
 
 ```
-docker-compose up -d
+docker-compose up -d --build
 ```
 
 ### Manual set up
 
- Run the bash script to configure the .env files
+Run the bash script to configure the .env files
 
 ```shell
 bash configure_server.sh
@@ -71,4 +71,4 @@ npm run start
 ### Nginx
 
 Make sure that you have configured your firewall correctly to allow incoming requests from your network.
-You can use some useful links and commands in the install guide file. I´ve linked some articles which explain how you can set up a nginx reverse proxy to deploy the server on your local network. 
+You can use some useful links and commands in the install guide file. I´ve linked some articles which explain how you can set up a nginx reverse proxy to deploy the server on your local network.

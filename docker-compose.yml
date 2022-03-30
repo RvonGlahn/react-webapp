@@ -9,30 +9,26 @@ services:
         restart: unless-stopped
         ports:
             - "$FLASK_RUN_PORT:$FLASK_RUN_PORT"
-        networks:
-            - app-network
         environment:
             - FLASK_APP=$FLASK_APP
             - FLASK_ENV=$FLASK_ENV
             - FLASK_RUN_PORT=$FLASK_RUN_PORT
             - FLASK_RUN_HOST=$FLASK_RUN_HOST
 
-    frontend:
-        build:
-            context: ./react-app
-            dockerfile: Dockerfile
-        container_name: react_app
-        volumes:
-            - /app/node_modules
-            - ./express-app/build:/app/build
+    # frontend:
+    #     build:
+    #         context: ./react-app
+    #         dockerfile: Dockerfile
+    #     container_name: react_app
+    #     volumes:
+    #         - /app/node_modules
+    #         - ./express-app/build:/app/build
 
-        environment:
-            - BROWSER=$BROWSER
-            - FAST_REFRESH=$FAST_REFRESH
-            - INLINE_RUNTIME_CHUNK=$INLINE_RUNTIME_CHUNK
-            - REACT_APP_SERVER_URL=$REACT_APP_SERVER_URL
-            - REACT_APP_FLASK_URL=$FLASK_RUN_HOST:$FLASK_RUN_PORT
-            - REACT_DOCKER_PORT=$REACT_DOCKER_PORT
+    #     environment:
+    #         - BROWSER=$BROWSER
+    #         - FAST_REFRESH=$FAST_REFRESH
+    #         - INLINE_RUNTIME_CHUNK=$INLINE_RUNTIME_CHUNK
+    #         - REACT_APP_FLASK_URL=$FLASK_RUN_HOST:$FLASK_RUN_PORT
 
     backend:
         depends_on:
@@ -45,19 +41,15 @@ services:
         restart: unless-stopped
         volumes:
             - /server/node_modules
-            - ./express-app/build:/server/build
+            # - ./express-app/build:/server/build
         ports:
-            - "80:$NODE_DOCKER_PORT"
-        networks:
-            - app-network
+            - "$NODE_EXPOSED_PORT:$NODE_DOCKER_PORT"
         environment:
             - NODE_ENV=$NODE_ENV
             - APP_NAME=$NODE_APP_NAME
             - HOST=$NODE_HOST
             - PORT=$NODE_DOCKER_PORT
+            - NODE_EXPOSED_PORT=$NODE_EXPOSED_PORT
             - BUILD_PATH=$BUILD_PATH
             - FLASK_URL=$FLASK_RUN_HOST:$FLASK_RUN_PORT
 
-networks:
-    app-network:
-        driver: bridge

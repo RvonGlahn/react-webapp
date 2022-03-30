@@ -19,6 +19,7 @@ read -p "Flask API Port Number: " API_PORT
 
 read -p "Proxy Port Number: " PROXY_PORT
 
+# create new dir if logs not available
 if [ ! -d express-app/logs ]; then
 	mkdir express-app/logs
 fi
@@ -37,11 +38,8 @@ if [ -f /fifa-api/.env ]; then
 fi
 
 # create .env file in react app directory
-while read line; do
-	if [[ $line == *"REACT_APP_SERVER_URL"* ]]; then
-		echo "REACT_APP_SERVER_URL=http://${DEVICE_IP}"
-		
-	elif [[ $line == *"REACT_APP_FLASK_URL"* ]]; then
+while read line; do		
+	if [[ $line == *"REACT_APP_FLASK_URL"* ]]; then
 		echo "REACT_APP_FLASK_URL=http://${DEVICE_IP}:${API_PORT}"
 		
     else 
