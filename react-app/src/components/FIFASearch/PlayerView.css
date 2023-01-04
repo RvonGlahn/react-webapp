@@ -1,0 +1,168 @@
+.player {
+    float: left;
+    padding-left: 1rem;
+    text-align: center;
+    width: 15rem;
+}
+
+.details-wrapper {
+    width: 75vw;
+    margin: 0 auto;
+    background-color: var(--secondary-dark);
+    box-shadow: 0 -1px 1px 5px #bfbfbf;
+}
+
+details {
+    padding: 0.5rem;
+    font: 1rem/1.2 sans-serif;
+}
+
+summary {
+    padding: 0.25rem 0.25rem;
+    background-color: var(--secondary-color);
+    font: bold 1.25rem/2 sans-serif;
+    color: rgb(70, 70, 70);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 4px 4px var(--secondary-dark);
+    cursor: pointer;
+    height: 3rem;
+    overflow: hidden;
+}
+summary::-webkit-details-marker {
+    display: none;
+}
+summary::before {
+    padding-right: 0.25rem;
+}
+
+details[open] summary::before {
+    padding-right: 0.25rem;
+}
+details[open] summary {
+    border-radius: 3px 3px 0 0;
+}
+
+.details-content {
+    height: fit-content;
+    block-size: fit-content;
+    margin: 0;
+    padding: 0.25rem 1rem;
+    background-color: white;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 2px 4px 4px var(--secondary-dark);
+    color: var(--secondary-dark);
+    overflow: auto;
+}
+
+.attribute {
+    float: left;
+    padding-right: 1rem;
+    width: 15rem;
+    text-align: left;
+}
+
+.player {
+    float: left;
+    text-align: center;
+    width: 15rem;
+}
+
+@media screen and (max-width: 768px) {
+    .playercontainer {
+        width: 95%;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .details-wrapper {
+        width: 75vw;
+        margin: 0 auto;
+        background-color: var(--primary-color);
+        box-shadow: 0 -1px 1px 5px #bfbfbf;
+    }
+    details {
+        padding: 0.5rem;
+        font: 1rem/1.2 sans-serif;
+    }
+
+    summary {
+        background-color: var(--primary-color);
+        font: 1.25rem/2 sans-serif;
+        color: floralwhite;
+        border: none;
+        border-radius: 1px;
+        box-shadow: 0 -1px 1px 1px var(--primary-color);
+        cursor: pointer;
+        /*list-style: none;*/ /* Triangle not shown */
+    }
+
+    summary::before {
+        padding-right: 0.25rem;
+        /*content: '+ ';*/ /* Instead of Triangle closed */
+    }
+    details[open] summary::before {
+        padding-right: 0.25rem;
+        /*content: '- ';*/ /* Instead of Triangle open */
+    }
+
+    /* Styling the summary in case of open 'details' */
+    details[open] summary {
+        border-radius: 3px 3px 0 0;
+    }
+
+    .details-content {
+        height: fit-content;
+        margin: 0;
+        padding: 0.25rem 1rem;
+        background-color: white;
+        border-radius: 0 0 3px 3px;
+        box-shadow: 0 1px 1px 1px var(--primary-color);
+        color: var(--primary-color);
+        overflow: auto;
+    }
+
+    .player {
+        margin-top: 0.5em;
+        float: left;
+        padding-left: 1rem;
+        text-align: center;
+        width: 7rem;
+        font-size: 12px;
+    }
+
+    .attribute {
+        float: left;
+        padding-right: 1rem;
+        width: 10rem;
+        text-align: left;
+    }
+
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        border: 0px solid #ccc;
+    }
+
+    td {
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 10%;
+    }
+}

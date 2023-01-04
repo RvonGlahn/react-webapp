@@ -1,0 +1,15 @@
+:root {
+    --primary-color: #0277bd;
+    --primary-dark: #004c8c;
+    --primary-light: #58a5f0;
+    --secondary-color: #fbe9e7;
+    --secondary-light: #fff;
+    --secondary-dark: #c8b7b5;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'PT Sans', sans-serif;
+}

@@ -8,24 +8,25 @@
 .vscode
 
 # dependencies
-**/data/*.csv
-*/build/
-*/node_modules/
-*/logs/
+node_modules/
+/webdev/node_modules
+/backend/node_modules
 /.pnp
 .pnp.js
+package-lock.json
 
 # testing
 /coverage
 
 # production
-build/
+/build
 !build/favicon.ico
 !build/manifest.json
 
 # misc
 .DS_Store
 .env
+.env.sample
 .env.local
 .env.development.local
 .env.test.local

@@ -1,0 +1,9 @@
+numpy
+pandas
+pytest
+pytest-cov
+python-dotenv
+Flask
+Flask-Cors
+pre-commit
+gunicorn
