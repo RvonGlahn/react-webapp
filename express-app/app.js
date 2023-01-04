@@ -6,8 +6,9 @@ const logger = require('morgan');
 const helmet = require('helmet');
 const compression = require('compression');
 const cors = require('cors');
-const errorHandler = require('errorhandler');
+const devErrorHandler = require('errorhandler');
 const constants = require('./constants');
+const prodErrorHandler = require('./error_handler');
 
 var app = express();
 
@@ -38,26 +39,21 @@ if (process.env.NODE_ENV == 'production') {
     });
 }
 
-// error handler
+// error handling
 if (process.env.NODE_ENV === 'development') {
     app.use(
-        errorHandler({
+        devErrorHandler({
             dumpExceptions: true,
             showStack: true,
         })
     );
-} else if (process.env.NODE_ENV === 'production') {
-    //gefährlich
-    app.use(
-        errorHandler({
-            showStack: false,
-        })
-    );
+} else {
+    app.use(prodErrorHandler.errorLogger);
+    app.use(prodErrorHandler.errorResponder);
 }
 
 process.on('uncaughtException', function (err) {
     console.error('An uncaught error occurred!');
-    console.error(err.stack);
     process.exit();
 });
 

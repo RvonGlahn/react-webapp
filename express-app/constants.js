@@ -32,7 +32,7 @@ const cspOptions = {
             "'self'",
             'http://localhost:*',
             'http://0.0.0.0:*',
-            'htttp://192.178.168.43:*',
+            'http://192.178.168.30:*',
             `http://${process.env.NODE_HOST}:*`,
             `http://${process.env.NODE_HOST}:*`,
             'https://fonts.googleapis.com',
