@@ -12,7 +12,7 @@ function Home() {
     const title = 'About Me';
 
     const description = `
-        I am Rasmus a Software Developer based in Berlin. I work as a Cloud Computing Engineer. My interests range from
+        I am Rasmus, a Software Developer from Berlin. I work as a Data Engineer at Deloitte. My interests range from
         Machine Learning and Software Engineering topics to Web Developement and Cloud Computing.`;
 
     const subtitle = 'Skills';

@@ -9,7 +9,7 @@
 
 .btn--primary {
     background-color: var(--secondary-color);
-    color: black;
+    color: var(--primary-dark);
     border: 1px solid var(--secondary-color);
 }
 
@@ -54,9 +54,9 @@
 .btn--wide {
     background-color: var(--secondary-color);
     box-shadow: 2px 3px 4px var(--secondary-dark);
-    color: black;
+    color: var(--primary-dark);
     padding: 12px 64px;
-    font-size: 20px;
+    font-size: 24px;
 }
 
 .btn--large:hover,

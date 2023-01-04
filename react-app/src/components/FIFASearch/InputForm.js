@@ -22,7 +22,7 @@ class InputForm extends React.Component {
             ability1Value: '',
             ability2Name: '',
             ability2Value: '',
-            fifa_versions: [22, 21, 20, 19, 18, 17, 16, 15],
+            fifa_versions: [23, 22, 21, 20, 19, 18, 17, 16, 15],
             suggestion: [],
             posList: [],
             attrList: [],
