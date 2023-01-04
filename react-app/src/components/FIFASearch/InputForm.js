@@ -91,12 +91,12 @@ class InputForm extends React.Component {
                 <h1 className="heading">Search Players in FIFA</h1>
                 <Form>
                     <Form.Row>
-                        <InputSuggest label_text="name" suggestion={this.state.suggestion} handleChange={this.handleChange} />
+                        <InputSuggest label_text="Player Name" suggestion={this.state.suggestion} handleChange={this.handleChange} />
                         <InputDropDown
                             dropList={this.state['posList']}
                             value={this.state.position}
                             handleChange={this.handleChange}
-                            labelName="position"
+                            labelName="Position"
                             objectKey="position"
                         />
                     </Form.Row>
@@ -105,33 +105,33 @@ class InputForm extends React.Component {
                             dropList={this.state['attrList']}
                             value={this.state.ability1Name}
                             handleChange={this.handleChange}
-                            labelName="skill 1"
+                            labelName="Choose first Skill"
                             objectKey="ability1Name"
                         />
                         <Form.Group as={Col} controlId="formGridAtt1Value">
-                            <Form.Label>value 1</Form.Label>
+                            <Form.Label>Set Skill Value</Form.Label>
                             <Form.Control name="ability1Value" value={this.state.ability1Value} onChange={this.handleChange} />
                         </Form.Group>
                         <InputDropDown
                             dropList={this.state['attrList']}
                             value={this.state.ability2Name}
                             handleChange={this.handleChange}
-                            labelName="skill 2"
+                            labelName="Choose second Skill"
                             objectKey="ability2Name"
                         />
                         <Form.Group as={Col} controlId="formGridAtt2Value">
-                            <Form.Label>value 2</Form.Label>
+                            <Form.Label>Set Skill Value</Form.Label>
                             <Form.Control type="text" name="ability2Value" value={this.state.ability2Value} onChange={this.handleChange} />
                         </Form.Group>
                     </Form.Row>
 
                     <Form.Row>
                         <Form.Group as={Col} controlId="formGridAge">
-                            <Form.Label>max. age</Form.Label>
+                            <Form.Label>max. Player Age</Form.Label>
                             <Form.Control type="text" name="age" value={this.state.age} onChange={this.handleChange} />
                         </Form.Group>
                         <Form.Group as={Col} controlId="formGridWert">
-                            <Form.Label>max. player value</Form.Label>
+                            <Form.Label>max. Player Value</Form.Label>
                             <Form.Control type="text" name="player_value" value={this.state.player_value} onChange={this.handleChange} />
                         </Form.Group>
                         <InputDropDown
