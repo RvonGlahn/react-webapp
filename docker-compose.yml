@@ -2,6 +2,7 @@ version: "3.8"
 
 services:
     api:
+        image: rvglahn/website:api
         build: 
             context: ./fifa-api
             dockerfile: Dockerfile
@@ -18,6 +19,7 @@ services:
     backend:
         depends_on:
             - api
+        image: rvglahn/website:express
         build:
             context: ./express-app
             dockerfile: Dockerfile
@@ -38,6 +40,7 @@ services:
             - FLASK_URL=$FLASK_RUN_HOST:$FLASK_RUN_PORT
 
     nginx-proxy:
+        image: rvglahn/website:nginx
         depends_on:
             - backend
         container_name: nginx
