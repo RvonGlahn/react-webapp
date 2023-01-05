@@ -1,5 +1,5 @@
 import React from 'react';
-import PageContent from '../../components/PageContent';
+import PageContent from '../../components/Page/PageContent';
 import { BattleSnake, PhotoSort, FIFA, WebApp } from './Data';
 import { useEffect } from 'react';
 

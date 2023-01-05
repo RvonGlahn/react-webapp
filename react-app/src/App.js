@@ -4,6 +4,7 @@ import Home from './pages/Home/Home';
 import Fifa from './pages/FIFA/Fifa';
 import Projects from './pages/Projects/Projects';
 import Blog from './pages/Blog/Blog';
+import { CookieBanner } from './components/CookieBanner/CookieBanner';
 import Footer from './components/Footer/Footer';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
@@ -33,6 +34,7 @@ class App extends React.Component {
                     </Switch>
                 </React.StrictMode>
                 <Footer />
+                <CookieBanner />
             </Router>
         );
     }
